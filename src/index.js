@@ -43,16 +43,16 @@ const reducer = (state = initialState, action) => {
 const store = createStore(reducer);
 class Counter extends Component {
   render() {
-    const { count, increment, decrement, reset } = this.props;
-    // console.log({ count, increment });
+    const { count, incrementValue, decrementValue, resetValue } = this.props;
+
     return (
       <main className="Counter">
         <p className="count">{count}</p>
         {console.log(count)}
         <section className="controls">
-          <button onClick={increment}>Increment</button>
-          <button onClick={decrement}>Decrement</button>
-          <button onClick={reset}>Reset</button>
+          <button onClick={incrementValue}>Increment</button>
+          <button onClick={decrementValue}>Decrement</button>
+          <button onClick={resetValue}>Reset</button>
         </section>
       </main>
     );
@@ -63,20 +63,25 @@ const mapStateToProps = state => {
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    increment() {
-      dispatch(incrementValue());
-    },
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     increment() {
+//       dispatch(incrementValue());
+//     },
 
-    decrement() {
-      dispatch(decrementValue());
-    },
+//     decrement() {
+//       dispatch(decrementValue());
+//     },
 
-    reset() {
-      dispatch(resetValue());
-    },
-  };
+//     reset() {
+//       dispatch(resetValue());
+//     },
+//   };
+// };
+const mapDispatchToProps = {
+  incrementValue,
+  decrementValue,
+  resetValue,
 };
 
 const CounterContainer = connect(mapStateToProps, mapDispatchToProps)(Counter);
